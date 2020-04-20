@@ -1,5 +1,7 @@
 package org.S1509388.gcu.TrafficApp;
 
+import android.util.Log;
+
 import org.S1509388.gcu.TrafficApp.Models.Incident;
 import org.S1509388.gcu.TrafficApp.Models.Roadwork;
 import org.xmlpull.v1.XmlPullParser;
@@ -145,6 +147,7 @@ public class Collection {
                             llrw.add(rw);
                             break;
                         case "title":
+                            Log.e("Title",tmptext);
                             rw.setTitle(tmptext);
                             break;
                         case "point":
@@ -160,7 +163,7 @@ public class Collection {
                             //Then will take out the word
                             String[] temparray = tmptext.split("<br />");
                             System.out.println(temparray.length);
-                            if(temparray.length > 2) {
+                            if(temparray.length > 1) {
                                 String startdate = temparray[0];
                                 String enddate = temparray[1];
                                 try {
@@ -175,7 +178,11 @@ public class Collection {
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-                                rw.setDescription(temparray[2]);
+                                if(temparray.length > 2)
+                                {
+                                    rw.setDescription(temparray[2]);
+                                }
+
                             }else
                             {
                                 rw.setDescription(tmptext);
@@ -300,9 +307,12 @@ public class Collection {
         LinkedList<Roadwork> tmp = new LinkedList<Roadwork>();
         for(Roadwork rw: rws)
         {
-            if(rw.getTitle().contains(input))
+            if(rw.getTitle() != null)
             {
-                tmp.add(rw);
+                if(rw.getTitle().contains(input))
+                {
+                    tmp.add(rw);
+                }
             }
         }
         return tmp;
@@ -312,9 +322,10 @@ public class Collection {
         LinkedList<Incident> tmp = new LinkedList<Incident>();
         for(Incident id: inc)
         {
-            if(id.getTitle().contains(input))
-            {
-                tmp.add(id);
+            if(id.getTitle() != null) {
+                if (id.getTitle().contains(input)) {
+                    tmp.add(id);
+                }
             }
         }
         return tmp;

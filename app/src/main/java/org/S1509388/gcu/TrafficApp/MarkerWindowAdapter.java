@@ -42,12 +42,8 @@ public class MarkerWindowAdapter implements GoogleMap.InfoWindowAdapter {
             {
                 tvStartDate.setText("Start Date: " + dateFormatterDate.format(rw.getStartDate()));
                 tvEndDate.setText("End Date: "  + dateFormatterDate.format(rw.getEndDate()));
-                tvOther.setText("Other Infomation: " +rw.getDescription());
-            }else
-            {
-                System.out.println(rw.getStartDate().toString());
-                System.out.println(rw.getEndDate().toString());
             }
+            tvOther.setText("Other Infomation: " +rw.getDescription());
             tvTitle.setText("Current Roadworks: " + marker.getTitle());
         }else if(markerinfo[0].equalsIgnoreCase("Roadworkp"))
         {
@@ -57,8 +53,8 @@ public class MarkerWindowAdapter implements GoogleMap.InfoWindowAdapter {
             {
                 tvStartDate.setText("Start Date: " + dateFormatterDate.format(rw.getStartDate()));
                 tvEndDate.setText("End Date: "  + dateFormatterDate.format(rw.getEndDate()));
-                tvOther.setText("Other Infomation: " +rw.getDescription());
             }
+            tvOther.setText("Other Infomation: " +rw.getDescription());
             tvTitle.setText("Planed Roadworks: " + marker.getTitle());
         }else
         {
